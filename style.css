@@ -1,0 +1,80 @@
+body {
+  background-color: #323232;
+  font-family: "Open Sans", sans-serif;
+  margin: 0; /* To remove default margin */
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+h1 {
+  text-align: center;
+}
+
+table {
+  border-collapse: collapse;
+  margin: 16px;
+}
+
+#content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 72vh;
+  position: relative;
+}
+
+td {
+  width: 100px;
+  height: 100px;
+  text-align: center;
+  font-size: 36px;
+  font-weight: bold;
+  cursor: pointer;
+  border: 5px solid #fff;
+  padding: 10px;
+  text-align: center;
+}
+
+table tr:first-child td {
+  border-top: 0;
+}
+table tr td:first-child {
+  border-left: 0;
+}
+table tr:last-child td {
+  border-bottom: 0;
+}
+table tr td:last-child {
+  border-right: 0;
+}
+
+td:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.all {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.reset-button {
+  border: none;
+  background-color: #fff;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-left: 100px;
+  margin-right: 100px;
+  padding: 12px;
+}
+/* 
+td.x {
+  color: #f00;
+}
+
+td.circle {
+  color: #00f;
+} */
