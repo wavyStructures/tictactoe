@@ -103,7 +103,8 @@ function getWinningCombination(winningCombinations) {
     for (const combination of winningCombinations) {        //einmal durch alle win-Mglktn
         //
         const [a, b, c] = combination;
-        if (fields[a] && fields[a] === fields[b] && fields[a] === fields[c]) {   //und wenn das erste Field nen 
+        if (fields[a] && fields[a] === fields[b] && fields[a] === fields[c]) {
+            //und wenn das erste Field nen 
             // Symbol hat, ob die anderen dasselbe haben?
             return combination;         //dann mach ein Return mit der Kombi
         }
@@ -134,10 +135,7 @@ function handleClick(cell, index) {
         cell.onclick = null;
         currentPlayer = currentPlayer === 'circle' ? 'cross' : 'circle';
 
-        if (isGameFinished()) {
-            const winCombination = getWinningCombination();
-            drawWinningLine(winCombination);
-        }
+        checkGameStatus();
     }
 }
 
@@ -184,4 +182,19 @@ function generateCrossSVG() {
         <animate attributeName="stroke-dasharray" from="0 188.5" to="188.5 0" dur="0.2s" fill="freeze" />
       </svg>
   `;
+}
+
+function computerMove() {
+    const availableCells = fields.map((value, index) => (value === null ? index : null)).filter(index => index !== null);
+
+    const randomIndex = Math.floor(Math.random() * availableCells.length);
+    const move = availableCells[randomIndex];
+
+    fields[move] = 'cross';
+    document.getElementById(`cell${move}`).innerHTML = generateCrossSVG();
+    document.getElementById(`cell${move}`).onclick = null;
+
+    if (!checkGameStatus()) {
+        currentPlayer = 'circle';
+    }
 }
