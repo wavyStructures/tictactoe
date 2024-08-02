@@ -129,13 +129,14 @@ function getRotationDegrees(rect1, rect2) {
 
 
 function handleClick(cell, index) {
-    if (fields[index] === null) {
-        fields[index] = currentPlayer;
-        cell.innerHTML = currentPlayer === 'circle' ? generateCircleSVG() : generateCrossSVG();
+    if (fields[index] === null && currentPlayer === 'circle') {
+        fields[index] = 'circle';
+        cell.innerHTML = generateCircleSVG();
         cell.onclick = null;
-        currentPlayer = currentPlayer === 'circle' ? 'cross' : 'circle';
 
-        checkGameStatus();
+        if (!checkGameStatus())
+            currentPlayer = 'cross';
+        setTimeout(computerMove, 500);
     }
 }
 
@@ -152,8 +153,9 @@ function resetGame() {
         null,
         null,
     ];
-
     render();
+
+    currentPlayer = 'circle';
 }
 
 function generateCircleSVG() {
@@ -198,3 +200,4 @@ function computerMove() {
         currentPlayer = 'circle';
     }
 }
+
